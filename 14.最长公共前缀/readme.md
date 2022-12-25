@@ -30,5 +30,30 @@
 ## 题解
 
 ```javascript
-
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {
+  const everyStrsLength = strs.map((str) => {
+    return str.length;
+  });
+  const longestLength = Math.max(...everyStrsLength);
+  let result = "";
+  let letter = "";
+  let mid = "";
+  for (let i = 0; i < longestLength; i++) {
+    letter = strs.map((str) => {
+      return str[i];
+    });
+    mid = letter[0];
+    if (letter.every((item) => item == letter[0])) {
+      result += mid;
+    } else {
+      result += "";
+      break;
+    }
+  }
+  return result;
+};
 ```
