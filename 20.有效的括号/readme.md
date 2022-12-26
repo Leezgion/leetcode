@@ -39,5 +39,35 @@
 ## 题解
 
 ```javascript
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+  while (
+    s.search(/\(\)/) >= 0 ||
+    s.search(/\[\]/) >= 0 ||
+    s.search(/\{\}/) >= 0
+  ) {
+    s = s.replace("[]", "");
+    s = s.replace("{}", "");
+    s = s.replace("()", "");
+  }
+  return s == "";
+};
+```
 
+```javascript
+var isValid = function (s) {
+  while (
+    s.search(/\(\)/) >= 0 ||
+    s.search(/\[\]/) >= 0 ||
+    s.search(/\{\}/) >= 0
+  ) {
+    s = s.replace("[]", "");
+    s = s.replace("{}", "");
+    s = s.replace("()", "");
+  }
+  return s == "";
+};
 ```
