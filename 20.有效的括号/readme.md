@@ -59,15 +59,26 @@ var isValid = function (s) {
 
 ```javascript
 var isValid = function (s) {
-  while (
-    s.search(/\(\)/) >= 0 ||
-    s.search(/\[\]/) >= 0 ||
-    s.search(/\{\}/) >= 0
-  ) {
-    s = s.replace("[]", "");
-    s = s.replace("{}", "");
-    s = s.replace("()", "");
+  const n = s.length;
+  if (n % 2 === 1) {
+    return false;
   }
-  return s == "";
+  const pairs = new Map([
+    [")", "("],
+    ["]", "["],
+    ["}", "{"],
+  ]);
+  const stk = [];
+  for (let ch of s) {
+    if (pairs.has(ch)) {
+      if (!stk.length || stk[stk.length - 1] !== pairs.get(ch)) {
+        return false;
+      }
+      stk.pop();
+    } else {
+      stk.push(ch);
+    }
+  }
+  return !stk.length;
 };
 ```
